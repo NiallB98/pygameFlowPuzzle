@@ -12,25 +12,10 @@ winWidth = 640
 win = pg.display.set_mode((winWidth, winHeight))
 pg.display.set_caption("Flow Free")
 
-RED = (150, 0, 0)
-DRED = (40, 0, 0)
-BLUE = (0, 0, 150)
-DBLUE = (0, 0, 40)
-GREEN = (0, 150, 0)
-DGREEN = (0, 40, 0)
-WHITE = (150, 150, 150)
-GREY = (45, 45, 45)
-DGREY = (15, 15, 15)
-BLACK = (0, 0, 0)
-YELLOW = (150, 150, 0)
-DYELLOW = (40, 40, 0)
-MAGENTA = (150, 0, 150)
-DMAGENTA = (40, 0, 40)
-
-lineColour = GREY
-colourEmpty = DGREY
+lineColour = (45, 45, 45)
+colourEmpty = (15, 15, 15)
 bgColour = (40, 40, 40)
-clrs = colourScheme('default')
+clrs = colourScheme()
 
 # Grid
 x0 = round(winHeight / 12)
@@ -69,7 +54,7 @@ running = True
 prevPoint = None
 while running:
     # Time Delay
-    pg.time.delay(32) # 16 ms delay ~ 60 fps
+    pg.time.delay(16) # 16 ms delay ~ 60 fps
     
     ### Events ###
     # Quit With Esc Button
