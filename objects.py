@@ -17,8 +17,10 @@ class squares(pg.sprite.Sprite):
         self.rect = pg.Rect(self.x, self.y, dx - 3, dx - 3)
     
     # Drawing Self
-    def drawSq(self, win, dx):
-        pg.draw.rect(win, self.colour, (self.x, self.y, dx, dx))
+    def drawSq(self, win, dx, colour=None):
+        if colour == None:
+            colour = self.colour
+        pg.draw.rect(win, colour, (self.x, self.y, dx, dx))
         
     # Drawing Source Circle
     def drawCirc(self, win, dx):

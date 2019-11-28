@@ -11,6 +11,7 @@ winHeight = 640
 winWidth = 640
 win = pg.display.set_mode((winWidth, winHeight))
 pg.display.set_caption("Flow Free")
+mouseCircle = pg.Surface((winWidth, winHeight), pg.SRCALPHA, 32)
 
 lineColour = (45, 45, 45)
 colourEmpty = (15, 15, 15)
@@ -18,10 +19,12 @@ bgColour = (40, 40, 40)
 clrs = colourScheme()
 
 # Grid
-x0 = round(winHeight / 12)
-x1 = (11 * winHeight) / 12
+x0 = 0
+x1 = winHeight
 
-level, numColours, n = genLevel()
+n = 9
+
+level, numColours = genLevel(n)
 
 dx = round(x1 - x0) / n
 x1 = x0 + (dx * n)
@@ -52,9 +55,15 @@ for i, _ in enumerate(lineDone): lineDone[i] = False
 dragging = False
 running = True
 prevPoint = None
+selectedColour = None
+mousePrevPos = None
+
+clock = pg.time.Clock()
+FPS = 60 # Frames Per Second
+
 while running:
     # Time Delay
-    pg.time.delay(16) # 16 ms delay ~ 60 fps
+    clock.tick(FPS)
     
     ### Events ###
     # Quit With Esc Button
@@ -207,12 +216,22 @@ while running:
     background_image.fill(bgColour)
     
     # Drawing Grid
-    drawGrid(win, grid, lineColour, n, x0, x1, dx)
+    drawGrid(win, grid, lineColour, n, x0, x1, dx, dragging, colourEmpty, selectedColour)
     
     # Drawing Lines
     drawLines(hitboxes, win, grid, dx)
     
+    # Drawing Mouse Circle
+    if dragging:
+        (rPart, gPart, bPart) = selectedLColour
+        mouseColour = (rPart, gPart, bPart, 50)
+        pg.draw.circle(mouseCircle, mouseColour, (int(pg.mouse.get_pos()[0]), int(pg.mouse.get_pos()[1])), 56)
+    
     # Updating Display
+    win.blit(mouseCircle, (0, 0))
     pg.display.update()
+    
+    mouseCircle.fill((255,255,255,0))
+    mousePrevPos = pg.mouse.get_pos()
     
 pg.quit()

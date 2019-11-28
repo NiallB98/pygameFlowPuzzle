@@ -200,11 +200,14 @@ def drawLines(hitboxes, win, grid, dx):
             pg.draw.line(win, hitbox.lineColour, (hitbox.x + (0.5 * dx), hitbox.y + (0.5 * dx)), (connectedBox.x + (0.5 * dx), connectedBox.y + (0.5 * dx)), int(np.floor(dx / 5)))
             pg.draw.circle(win, hitbox.lineColour, (int(round(hitbox.x + (0.5 * dx))), int(round(hitbox.y + (0.5 * dx)))), int(np.floor(dx / 10)))
 
-def drawGrid(win, grid, lineColour, n, x0, x1, dx):
+def drawGrid(win, grid, lineColour, n, x0, x1, dx, dragging, colourEmpty, selectedColour):
     for i in range(0, n + 1):
         if i != n:
             for j in range(0, n):
-                grid[i, j].drawSq(win, dx)
+                if (dragging and (grid[i, j].colour == selectedColour)) or grid[i, j].connected == False:
+                    grid[i, j].drawSq(win, dx, colourEmpty)
+                else:
+                    grid[i, j].drawSq(win, dx)
                 if grid[i, j].isSrc: grid[i, j].drawCirc(win, dx)
     # So the Lines are on top
     for i in range(0, n + 1):
