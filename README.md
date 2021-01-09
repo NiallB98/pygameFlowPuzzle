@@ -4,7 +4,7 @@ The goal of this puzzle game is to fill out the grid while connecting each of th
 
 To run this you will need the following Python modules:
 - numpy
-- pygame (Used pygame 2. when making it)
+- pygame
 - random
 - os
 
