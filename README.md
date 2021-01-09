@@ -1,9 +1,9 @@
-This is a personal project I'm doing in my free time in the hopes of eventually making a finished version of the mobile game Flow Free
-on pc for me and my friends to play, so far I have the main mechanics of the game sorted but will still need to improve on them because
-for example when dragging the mouse and moving it fast the lines will not be able to catch up to the mouse because the current mouse
-collision checks when dragging over an empty space are only done for the squares next to the selected line's end point so I need to work
-on a pathfinding algorithm to fix that.
+This is a personal project I challenged myself to work on for a week, based on the App Store game FlowFree. I originally planned to randomly generate the levels but I didnt have the time to work out a method so instead I inserted a level for each level size going from 5x5 to 10x10, which can be changed in the main file.
 
-I also hope to randomly generate the levels eventually, which will create pre-solved puzzles then take out the source points from them
-and give that to the game, level generation may need to wait till I have more free time though as there are plenty of checks the generator
-will need to go through and I'll have to plan them out before applying them to code.
+The goal of this puzzle game is to fill out the grid while connecting each of the dots to the dots with the same colour by clicking and dragging from one of them to the other.
+
+To run this you will need the following Python modules:
+- numpy
+- pygame (Used pygame 2. when making it)
+- random
+- os
