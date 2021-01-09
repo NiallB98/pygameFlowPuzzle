@@ -23,7 +23,7 @@ x0 = 0
 x1 = winHeight
 
 # Level Dimensions (5 for 5x5 up to 10 for 10x10)
-n = 9
+n = 5
 
 level, numColours = genLevel(n)
 
@@ -144,7 +144,6 @@ while running:
                 
                 # Dragging over unconnected, non-source square
                 elif (hitbox.isSrc == False) and (hitbox.colour != selectedColour) and (hitbox.connected == False):
-                    
                     if prevPoint.isSrc:
                         if prevPoint.i == prevPoint.connection[0] and prevPoint.j == prevPoint.connection[1]:
                             prevPoint.connection[0] = prevPoint.connection[1] = None
@@ -160,7 +159,7 @@ while running:
                         updateAge(hitbox, 1, prevPoint, grid)
                         prevPoint = hitbox
                             
-                elif (hitbox.isSrc == False) and (hitbox.colour != selectedColour) and (hitbox.connected == True):
+                elif (hitbox.isSrc == False) and (hitbox.colour != selectedColour) and (hitbox.connected == True) and (prevPoint.isSrc == False):
                     # Get the square(s) connected to the split up one and remove the connection to them
                     crawlToSrc(hitbox, grid)
                     if hitbox.connection[0] != None: connection(hitbox, grid[hitbox.connection[0], hitbox.connection[1]], True)
@@ -181,11 +180,14 @@ while running:
                     prevPoint = hitbox
                     
                     if checkDone(hitboxes):
-                        print('Done')
+                        print('Puzzle Solved!\n')
+                        pg.display.set_caption("Flow Free [Puzzle Solved!]")
+                        
                 # Dragging over non-source similarly coloured non-source square
                 elif (hitbox.connected == True) and (hitbox.colour == selectedColour) and (hitbox.isSrc == False):
                     jumpBackToTarget(prevPoint, hitbox, grid)
                     prevPoint = hitbox
+                    
             elif (prevPoint.connected == True) and (hitbox.colour == selectedColour) and prevPoint.isSrc and (hitbox.connection[0] != None) and (hitbox.connection[2] != None):
                     
                 if prevPoint.connection[0] != None: connectedbox = grid[prevPoint.connection[0], prevPoint.connection[1]]
@@ -194,13 +196,16 @@ while running:
                 prevPoint.connected = False
                 jumpBackToTarget(connectedbox, hitbox, grid)
                 prevPoint = hitbox
+                
             elif (hitbox.connected == True) and (hitbox.colour == selectedColour) and (hitbox.isSrc == False):
                 jumpBackToTarget(prevPoint, hitbox, grid)
                 prevPoint = hitbox
+                
             # Hovering over start source from non-source after losing focus
             elif (hitbox.connected == True) and (hitbox.colour == selectedColour) and hitbox.isSrc and (prevPoint.isSrc == False):
                 jumpBackToTarget(prevPoint, hitbox, grid)
                 prevPoint = hitbox
+                
             # Hovering over start source while prevPoint is the other source
             elif hitbox.connected and (hitbox.colour == selectedColour) and hitbox.isSrc and prevPoint.isSrc and (prevPoint.age < hitbox.age) and prevPoint.connected:
                 if prevPoint.connection[0] != None: connectedbox = grid[prevPoint.connection[0], prevPoint.connection[1]]
