@@ -11,4 +11,4 @@ To run this you will need the following Python modules:
 If I were to come back and make a better version of this some of what I would add would be:
 - Random level generation
 - Main menu
-- GUI feedback that the puzzle is complete rather than the console just printing "Done"
+- GUI feedback that the puzzle is complete instead of giving feedback just in the window title and console
