@@ -22,6 +22,7 @@ clrs = colourScheme()
 x0 = 0
 x1 = winHeight
 
+# Level Dimensions (5 for 5x5 up to 10 for 10x10)
 n = 9
 
 level, numColours = genLevel(n)
