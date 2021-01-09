@@ -66,7 +66,7 @@ while running:
     # Time Delay
     clock.tick(FPS)
     
-    ### Events ###
+    ##### Events #####
     # Quit With Esc Button
     keys = pg.key.get_pressed()
     if keys[pg.K_ESCAPE]: # Esc Button
@@ -114,8 +114,6 @@ while running:
             if event.button == 1:
                 if dragging == True:
                     dragging = False
-            
-    ###
         
     ### Dragging ###
     for hitbox in hitboxes:
@@ -217,6 +215,8 @@ while running:
     
     ###
     
+    #####
+    
     # Filling Background
     background_image = pg.Surface(((winWidth, winHeight)))
     background_image.fill(bgColour)
@@ -227,7 +227,7 @@ while running:
     # Drawing Lines
     drawLines(hitboxes, win, grid, dx)
     
-    # Drawing Mouse Circle
+    # Drawing Translucent Mouse Circle Effect
     if dragging:
         (rPart, gPart, bPart) = selectedLColour
         mouseColour = (rPart, gPart, bPart, 50)
