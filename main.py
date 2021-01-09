@@ -3,7 +3,7 @@ import pygame as pg
 from functions import drawGrid, changeState, connection, jumpBackToTarget, crawlToSrc, updateAge, checkDone, drawLines
 from objects import squares
 from colourSchemes import colourScheme
-from Level_Generation.generator import genLevel
+from lvlGen.generator import genLevel
 pg.init()
 
 # Creating Window
