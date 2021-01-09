@@ -177,6 +177,7 @@ while running:
                     updateAge(hitbox, 1, prevPoint, grid)
                     prevPoint = hitbox
                     
+                    # Puzzle Completed Notification
                     if checkDone(hitboxes):
                         print('Puzzle Solved!\n')
                         pg.display.set_caption("Flow Free [Puzzle Solved!]")
